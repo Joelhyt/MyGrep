@@ -19,14 +19,14 @@ int main()
     findtext(text, search);
 }
 
-void findtext(std::string a, std::string b) {
+void findtext(std::string text, std::string search) {
 
-    size_t position = a.find(b);
+    size_t position = text.find(search);
 
     if (position != std::string::npos) {
-        std::cout << "\"" << b << "\"" << " was found in " << "\"" << a << "\"" << " at position: " << position << std::endl;
+        std::cout << "\"" << search << "\"" << " was found in " << "\"" << text << "\"" << " at position: " << position << std::endl;
     }
     else {
-        std::cout << "\"" << b << "\" was not found in " << "\"" << a << "\"." << std::endl;
+        std::cout << "\"" << search << "\" was not found in " << "\"" << text << "\"." << std::endl;
     }
 }
