@@ -130,7 +130,7 @@
     <ClCompile Include="mygrep.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="man_grep_ASCII.txt" />
+    <Text Include="man_grep_plain_ASCII.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
