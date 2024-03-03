@@ -24,7 +24,7 @@ int main(int argc, char* argv[])
     }
 
     if (argc != 3 && argc != 4) {
-        std::cerr << "Usage: " << argv[0] << " <options -ol , -olo> <search_word> <filename> or leave empty for test search." << std::endl;
+        std::cerr << "Usage: " << argv[0] << " <options -ol , -oo , -olo> <search_word> <filename> or leave empty for test search." << std::endl;
         return 1;
     }
 
@@ -46,6 +46,7 @@ int main(int argc, char* argv[])
     else if (argc == 4) {
 
         int lineNumber{ 1 };
+        int occurences{ 0 };
         std::string line;
         std::string options = argv[1];
         std::string search = argv[2];
@@ -64,8 +65,17 @@ int main(int argc, char* argv[])
                 lineNumber++;
             }
         }
+        else if (options == "-oo") {
+
+            while (std::getline(file, line)) {
+                if (line.find(search) != std::string::npos) {
+                    findtext(line, search, true);
+                    occurences++;
+                }
+            }
+            std::cout << "\nOccurences of lines containing \"" << search << "\": " << occurences << std::endl;
+        }
         else if (options == "-olo") {
-            int occurences{ 0 };
             while (std::getline(file, line)) {
                 if (line.find(search) != std::string::npos) {
                     std::cout << lineNumber << ":";
@@ -77,7 +87,7 @@ int main(int argc, char* argv[])
             std::cout << "\nOccurences of lines containing \"" << search << "\": " << occurences << std::endl;
         }
         else {
-            std::cerr << "\nError: Incorrect options.\n\n" << "Usage: " << argv[0] << " <options -ol , -olo> <search_word> <filename> or leave empty for test search." << std::endl;
+            std::cerr << "\nError: Incorrect options.\n\n" << "Usage: " << argv[0] << " <options -ol , -oo , -olo> <search_word> <filename> or leave empty for test search." << std::endl;
             return 1;
         }
 
